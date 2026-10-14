@@ -24,8 +24,8 @@ COPY scripts ./scripts
 COPY evals ./evals
 COPY data/samples ./data/samples
 
-# Non-root user; /app/data is the only writable path (mount a volume there).
-RUN useradd --system --uid 10001 --home-dir /app flightdesk \
+# Non-root user (uid 1000 also matches Hugging Face Spaces, which runs containers as 1000); /app/data is the only writable path (mount a volume there).
+RUN useradd --system --uid 1000 --home-dir /app flightdesk \
     && mkdir -p /app/data/exports /app/data/logs /app/data/backups \
     && chown -R flightdesk:flightdesk /app/data
 USER flightdesk
@@ -33,6 +33,6 @@ VOLUME ["/app/data"]
 
 EXPOSE 8501
 HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
-    CMD python -c "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=4).status == 200 else 1)"
+    CMD python -c "import os,sys,urllib.request as u; sys.exit(0 if u.urlopen('http://127.0.0.1:%s/_stcore/health' % os.environ['STREAMLIT_SERVER_PORT'], timeout=4).status == 200 else 1)"
 
 CMD ["streamlit", "run", "app.py"]
