@@ -1,3 +1,13 @@
+---
+title: FlightDesk AI
+emoji: ✈️
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # FlightDesk AI
 
 **An AI-assisted operations desk for a private-aviation (charter) business, with three connected experiences on one
