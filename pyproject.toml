@@ -1,0 +1,31 @@
+[project]
+name = "flightdesk-ai"
+version = "0.1.0"
+description = "FlightDesk AI — independent portfolio prototype for private-aviation inquiry intelligence"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+    "live: makes real (paid) OpenAI API calls; skipped unless RUN_LIVE_TESTS=1",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning:streamlit.*",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+ignore = ["E501", "B008"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+warn_unused_ignores = true
+check_untyped_defs = true
+plugins = ["pydantic.mypy"]
+exclude = ["tests/", "scripts/"]

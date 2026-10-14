@@ -1,0 +1,6 @@
+inquiry_customer_label,operator_label,total_price,currency,aircraft_type,passenger_capacity,included_services,excluded_services,restrictions,valid_until,notes
+Demo Import Customer 001,Demo Operator E (fictional),58500,USD,Midsize jet,8,catering;taxes,de_icing,,2026-11-30,Fictional quote for CSV import demo
+Demo Import Customer 001,Demo Operator F (fictional),64200,USD,Super-midsize jet,9,catering;wifi;taxes;landing_and_handling_fees,,Departure slot subject to curfew,,Fictional quote for CSV import demo
+Demo Import Customer 003,Demo Operator G (fictional),41800,EUR,Light jet,6,taxes,catering,Max 1 pet in cabin,2026-12-15,Fictional quote for CSV import demo
+Demo Import Customer 003,Demo Operator H (fictional),-100,EUR,Light jet,6,,,,,INTENTIONALLY INVALID ROW: negative price
+Demo Import Customer 999,Demo Operator I (fictional),30000,USD,Light jet,6,,,,,INTENTIONALLY INVALID ROW: unknown inquiry

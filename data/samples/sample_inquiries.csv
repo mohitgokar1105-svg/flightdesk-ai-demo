@@ -1,0 +1,8 @@
+customer_label,original_text,origin,destination,trip_type,departure_date,return_date,passenger_count,trip_purpose,date_flexibility,budget_amount,currency,requested_services,estimated_opportunity_value,advisor_notes
+Demo Import Customer 001,"CSV import sample: LA to Aspen for 4, Dec 18-22.",Los Angeles,Aspen,round_trip,2026-12-18,2026-12-22,4,leisure,,60000,USD,accommodation,60000,Fictional imported record
+Demo Import Customer 002,"CSV import sample: Teterboro to Nantucket, one way.",Teterboro,Nantucket,one_way,2026-11-14,,3,,fixed,,,ground_transport;catering,,Fictional imported record
+Demo Import Customer 003,"CSV import sample: London to Geneva ski trip.",London,Geneva,round_trip,2027-01-09,2027-01-16,6,leisure,flexible,45000,EUR,special_luggage,45000,Fictional imported record
+Demo Import Customer 004,"INTENTIONALLY INVALID ROW: zero passengers.",Miami,Nassau,one_way,2026-12-01,,0,,,,,,,Shows row-level validation
+Demo Import Customer 005,"INTENTIONALLY INVALID ROW: unsupported currency.",Dallas,Austin,one_way,2026-11-20,,2,,,15000,XYZ,,,Shows row-level validation
+Demo Import Customer 006,"INTENTIONALLY INVALID ROW: return before departure.",Boston,Miami,round_trip,2026-12-20,2026-12-10,2,,,,,,,Shows row-level validation
+Demo Import Customer 001,"CSV import sample: LA to Aspen for 4, Dec 18-22.",Los Angeles,Aspen,round_trip,2026-12-18,2026-12-22,4,leisure,,60000,USD,accommodation,60000,INTENTIONAL DUPLICATE of row 1

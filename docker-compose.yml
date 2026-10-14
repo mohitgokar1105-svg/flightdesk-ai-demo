@@ -1,0 +1,45 @@
+# Single-host production stack: the app (SQLite on a named volume) behind Caddy with automatic HTTPS.
+#   cp .env.example .env   # fill in OPENAI_API_KEY, DEMO_MODE=false, owner credentials, SITE_ADDRESS
+#   docker compose up -d --build
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      APP_ENV: production
+      TRUST_PROXY_HEADERS: "1"
+    volumes:
+      - flightdesk-data:/app/data
+    expose:
+      - "8501" # reachable only by Caddy, never published to the host
+
+  caddy:
+    image: caddy:2.8-alpine
+    restart: unless-stopped
+    depends_on:
+      app:
+        condition: service_healthy
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:?set SITE_ADDRESS in .env, e.g. desk.example.com}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+  backup:
+    build: .
+    restart: unless-stopped
+    entrypoint: ["sh", "-c", "while true; do python scripts/backup_db.py --keep 14; sleep 86400; done"]
+    environment:
+      APP_ENV: production
+    volumes:
+      - flightdesk-data:/app/data
+
+volumes:
+  flightdesk-data:
+  caddy-data:
+  caddy-config:

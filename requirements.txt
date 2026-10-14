@@ -1,0 +1,16 @@
+# Runtime (pinned versions tested with Python 3.12)
+streamlit==1.65.0
+SQLAlchemy==2.1.4
+pydantic==2.14.0
+pandas==3.0.6
+plotly==7.1.0
+openai==3.28.0
+python-dotenv==1.2.4
+fpdf2==2.8.9
+pypdf==6.20.0
+
+# Development / testing
+pytest==9.1.1
+hypothesis==6.169.0
+ruff==0.17.0
+mypy==2.4.0
